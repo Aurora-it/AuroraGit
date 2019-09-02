@@ -1,0 +1,396 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js">
+</script>
+<div class="well">
+    <div class="row">
+        <div class="col-sm-3">
+            <input class="form-control" id="txt_dateS" />
+        </div>
+        <div class="col-sm-3">
+            <input class="form-control" id="txt_dateE" />
+        </div>
+        <div class="col-sm-6">
+            <span style="color:dimgrey; font-size:35px;" onclick="getStatus()"><i class="fa fa-desktop"></i></span>&nbsp;&nbsp;
+            <span style="color:dimgrey; font-size:35px;" onclick="saveStatistic()"><i class="fa fa-cloud-download"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <span class="pull-right" style="color:#ff1b1b; font-size:25px;" onclick="getShow('panal_la')"><i class="fa fa-list-alt"></i>League</span>
+            <span class="pull-right" style="color:#ff1b1b; font-size:25px;">&nbsp;&nbsp;</span>
+            <span class="pull-right" style="color:#ff1b1b; font-size:25px;" onclick="getShow('panal_show')"><i class="fa fa-list-alt"></i>Items</span>&nbsp;
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table">
+            <table id="dt1" class="table-customAU table-bordered table-hover" style="width:100%">
+                <thead style="color:white; background-color:#333333;">
+                    <tr>
+                        <th>Code</th>
+                        <th style="text-align:center">ราคาทั้งหมด</th>
+                        <th style="text-align:center">จำนวน100%</th>
+                        <th style="text-align:center">จำนวน90% </th>
+                        <th style="text-align:center">จำนวน80% </th>
+                        <th style="text-align:center">จำนวน70% </th>
+                        <th style="text-align:center">จำนวน60% </th>
+                        <th style="text-align:center">จำนวน50% </th>
+                        <th style="text-align:center">จำนวน40% </th>
+                        <th style="text-align:center">จำนวน30% </th>
+                        <th style="text-align:center">จำนวน20% </th>
+                        <th style="text-align:center">จำนวน10% </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="panal" id="panal_show">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="table">
+                <table id="dtGroup" class="table-customAU table-bordered table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>รหัส</th>
+                            <th>ชื่อ</th>
+                            <th>รายละเอียด</th>
+                            <th style="text-align:right">ขายทั้งหมด</th>
+                            <th style="text-align:right">จำนวนขาย%</th>
+                            <th style="text-align:right">รายการสินค้า</th>
+                            <th style="text-align:center;"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <div class="table">
+                <table id="dtGroupDetail" class="table-customAU table-bordered table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>รายละเอียด</th>
+                            <th>รหัสสินค้า</th>
+                            <th>ชื่อสินค้า</th>
+                            <th>Barcode </th>
+                            <th style="text-align:right">ขายทั้งหมด</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="panal" id="panal_la">
+    <div class="row">
+        <div class="col-md-4 col-sm-8">
+            <div class="table">
+                <table id="dtSumLA" class="table-customAU table-bordered table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>LA</th>
+                            <th style="text-align:right">จำนวนสาขา</th>
+                            <th style="text-align:right"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
+        </div>
+        @*<div class="col-md-2">
+
+        </div>*@
+        <div class="col-md-6 col-sm-12">
+            <div class="table">
+                <table id="dtLA" class="table-customAU table-bordered table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>LA</th>
+                            <th>รหัสสาขา</th>
+                            <th>ชื่อสาขา</th>
+                            <th style="text-align:right">ขายทั้งหมด</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script>
+        var arrayDetail = [];
+        var array = {};
+        var arrayLA = {};
+        var arraySumLA = {};
+        $(function () {
+
+        $("#dtSumLA").hide();
+        $("#dtLA").hide();
+        $("#dt1").hide();
+        $("#dtGroup").hide();
+        $("#dtGroupDetail").hide();
+        $("#txt_dateS").val('01/01/2019');
+        $("#txt_dateE").val('30/06/2019');
+    });
+
+
+    function getShow(Id) {
+        $("#" + Id).toggle();
+    }
+
+    function getStatus() {
+            $("#dtGroup").hide();
+            $("#dtGroupDetail").hide();
+
+            $("#dt1 tbody").empty();
+            $.ajax({
+                url: "@Url.Action("GetSummaryPredictH_LA", "CreateStatistic")",//method/controller
+                type: "POST",
+                data: { dateStart: "20190101", dateEnd: "20190630" },//parameter
+                dataType: 'json',
+                 success: function (data) {
+                     var temp = '';
+                     $.each(data.dataH, function (i, e) {
+                         temp += "<tr><td>" + e.PDT_Code + "</td>";
+                         temp += "<td style='text-align:right; color:red;'>" + addCommas(e.PriceAll) + "</td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty100) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty100 + ",100)' id ='r_100' value='" + e.Qty100 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty90) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty90 + ",90)' id ='r_90' value='" + e.Qty90 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty80) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty80 + ",80)' id ='r_80' value='" + e.Qty80 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty70) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty70 + ",70)' id ='r_70' value='" + e.Qty70 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty60) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty60 + ",60)' id ='r_60' value='" + e.Qty60 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty50) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty50 + ",50)' id ='r_50' value='" + e.Qty50 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty40) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty40 + ",40)' id ='r_40' value='" + e.Qty40 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty30) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty30 + ",30)' id ='r_30' value='" + e.Qty30 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty20) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty20 + ",20)' id ='r_20' value='" + e.Qty20 + "'/></td>";
+                         temp += "<td style='text-align:right'>" + addCommas(e.Qty10) + "&nbsp;<input type='radio' name='r_per'  onchange='getDataGroupTop(" + e.Qty10 + ",10)' id ='r_10' value='" + e.Qty10 + "'/></td></tr>";
+                     });
+                     $("#dt1 tbody").append(temp);
+                     $("#dt1").show();
+
+                     arraySumLA = _.groupBy(data.dataLA, 'LA')///Table Summary League
+                     genTableSumLA()
+
+                     arrayLA = data.dataLA ///Table Summary League Detail Branch
+                     genTableLA('')
+
+                 },
+                 error: function (e) {
+                     console.log(e.responseText);
+                 }
+            });
+     }
+
+
+    function genTableSumLA() {
+        var QtyBranch = 0, n = 0;
+            var temp, tempF = '';
+
+            $("#dtSumLA tbody").empty();
+            $("#dtSumLA tfoot").empty();
+        $.each(arraySumLA, function (i, e) {
+                n++;
+                temp += "<tr><td>" + n + "</td>";
+                temp += "<td>" + i + "</td>";
+                temp += "<td style='text-align:right'>" + addCommas(e.length) + "</td>";
+                temp += "<td style='text-align:center'><p onclick=genTableLA('" + i + "')><i class='fa fa-tags'></p></td>";
+                temp += "</tr > ";
+
+                QtyBranch = QtyBranch + e.length;
+            });
+            tempF += "<tr style='color:red;'>";
+            tempF += "<td>Total</td>";
+            tempF += "<td></td>";
+            tempF += "<td style='text-align:right'>" + addCommas(QtyBranch) + "</td>";
+            tempF += "<td style='text-align:center'><p onclick=genTableLA('')><i class='fa fa-tags'></p></td>";
+            tempF += "</tr>";
+
+            $("#dtSumLA tbody").append(temp);
+            $("#dtSumLA tfoot").append(tempF);
+            $("#dtSumLA").show();
+    }
+
+
+
+        function genTableLA(vFilter) {
+            var result = '';
+            if (vFilter != '') {
+                result = arrayLA.filter(fruit => fruit.LA == vFilter);
+            }
+            else {
+                result = arrayLA;
+            }
+
+        $("#dtLA tbody").empty();
+        $("#dtLA tfoot").empty();
+        var temp1, tempF1 = '';
+        var PriceAll = 0;
+            $.each(result, function (i, e) {
+            temp1 += "<tr><td>" + e.Id + "</td>";
+            temp1 += "<td>" + e.LA + "</td>";
+            temp1 += "<td>" + e.Branch_Code + "</td>";
+            temp1 += "<td>" + e.Branch_Name + "</td>";
+            temp1 += "<td style='text-align:right'>" + addCommas(e.PriceAll) + "</td>";
+            temp1 += "</tr > ";
+
+            PriceAll = PriceAll + e.PriceAll;
+        });
+        tempF1 += "<tr style='color:red;'>";
+        tempF1 += "<td>Total</td>";
+        tempF1 += "<td></td>";
+        tempF1 += "<td></td>";
+        tempF1 += "<td></td>";
+        tempF1 += "<td style='text-align:right'>" + addCommas(PriceAll) + "</td>";
+        tempF1 += "</tr>";
+
+        $("#dtLA tbody").append(temp1);
+        $("#dtLA tfoot").append(tempF1);
+        $("#dtLA").show();
+    }
+
+
+
+
+    function genTable(vFilter) {
+        var result = '';
+        if (vFilter != '') {
+            result = array.filter(fruit => fruit.PDG_Code == vFilter);
+        }
+        else {
+            result = array;
+        }
+
+        $("#dtGroupDetail tbody").empty();
+        $("#dtGroupDetail tfoot").empty();
+        var temp1, tempF1 = '';
+        var QtyGroupAll_D = 0;
+        var n = 0;
+        $.each(result, function (i, e) {
+            n++;
+            temp1 += "<tr><td>" + n + "</td>";
+            temp1 += "<td>" + e.PDG_Ds + "</td>";
+            temp1 += "<td>" + e.Product_code + "</td>";
+            temp1 += "<td>" + e.PDT_Name + "</td>";
+            temp1 += "<td>" + e.PDT_Barcode + "</td>";
+            temp1 += "<td style='text-align:right'>" + addCommas(e.QtyProdAll) + "</td>";
+            temp1 += "</tr > ";
+
+            QtyGroupAll_D = QtyGroupAll_D + e.QtyProdAll;
+        });
+        tempF1 += "<tr style='color:red;'>";
+        tempF1 += "<td>Total</td>";
+        tempF1 += "<td></td>";
+        tempF1 += "<td></td>";
+        tempF1 += "<td></td>";
+        tempF1 += "<td></td>";
+        tempF1 += "<td style='text-align:right'>" + addCommas(QtyGroupAll_D) + "</td>";
+        tempF1 += "</tr>";
+
+        $("#dtGroupDetail tbody").append(temp1);
+        $("#dtGroupDetail tfoot").append(tempF1);
+        $("#dtGroupDetail").show();
+    }
+
+
+        function getDataGroupTop(vNum, vPer) {
+        $("#dtGroupDetail").hide();
+        $("#dtGroup").hide();
+
+        $("#dtGroup tbody").empty();
+        $("#dtGroup tfoot").empty();
+        $.ajax({
+            url: "@Url.Action("GetSummaryPredictGroupDatailAll", "CreateStatistic")",//method/controller
+            type: "POST",
+            data: { dateStart: "20190101", dateEnd: "20190630", per: vPer },//parameter
+            dataType: 'json',
+            success: function (data) {
+                array = data.dataDatail
+                genTable('')
+
+                var temp, tempF = '';
+                var QtyGroupAll = 0, QtyGroupPer = 0, QtyProdCount = 0;
+                var m = 0;
+                $.each(data.dataGroup, function (i, e) {
+                    m++;
+                    temp += "<tr><td>" + m + "</td>";
+                    temp += "<td>" + e.PDG_Code + "</td>";
+                    temp += "<td>" + e.PDG_Name + "</td>";
+                    temp += "<td>" + e.PDG_Ds + "</td>";
+                    temp += "<td style='text-align:right'>" + addCommas(e.QtyGroupAll) + "</td>";
+                    temp += "<td style='text-align:right'>" + addCommas(e.QtyGroupPer) + "</td>";
+                    temp += "<td style='text-align:right'>" + addCommas(e.QtyProdCount) + "</td>";
+                    temp += "<td style='text-align:center'><p onclick=genTable('" + e.PDG_Code + "')><i class='fa fa-tags'></p></td>";
+                    temp += "</tr > ";
+
+                    QtyGroupAll = QtyGroupAll + e.QtyGroupAll;
+                    QtyGroupPer = QtyGroupPer + e.QtyGroupPer;
+                    QtyProdCount = QtyProdCount + e.QtyProdCount;
+                });
+                tempF += "<tr style='color:red;'>";
+                tempF += "<td>Total</td>";
+                tempF += "<td></td>";
+                tempF += "<td></td>";
+                tempF += "<td></td>";
+                tempF += "<td style='text-align:right'>" + addCommas(QtyGroupAll) + "</td>";
+                tempF += "<td style='text-align:right'>" + addCommas(QtyGroupPer) + "</td>";
+                tempF += "<td style='text-align:right'>" + addCommas(QtyProdCount) + "</td>";
+                tempF += "<td style='text-align:center'><p onclick=genTable('')><i class='fa fa-tags'></p></td>";
+                tempF += "</tr>";
+
+                $("#dtGroup tbody").append(temp);
+                $("#dtGroup tfoot").append(tempF);
+                $("#dtGroup").show();
+             },
+             error: function (e) {
+                 console.log(e.responseText);
+             }
+        });
+    }
+
+
+    function saveStatistic() {
+        swal("Save Complete", "", "success").then((value) => {
+        });
+    }
+
+
+    function getGroupTopDetail(vPer) {
+        swal(vPer ,"", "success").then((value) => {
+        });
+    }
+
+    function addCommas(sVal) {
+        return sVal.toLocaleString("en");
+    }
+
+    function conInt(sVal) {
+        return parseFloat(sVal).toFixed(2);
+    }
+
+    </script>
+
+}
+

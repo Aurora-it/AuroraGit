@@ -1,0 +1,286 @@
+﻿input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.badge.status {
+    padding: 4px 10px;
+    font-size: 10px;
+    margin-bottom: 0;
+}
+
+.badge-success {
+    color: #fff;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.border-gray {
+    border-color: #ddd;
+}
+
+.btn-dt-icon {
+    padding: 0px 6px;
+    margin-bottom: 0 !important;
+}
+
+dl dd {
+    line-height: 1.5rem;
+}
+
+dl.row {
+    margin-bottom: 5px;
+}
+
+.f-date {
+    font-size: 48px;
+}
+
+.font-size-13 {
+    font-size: 13px;
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.form-section-1 {
+    color: #343A40;
+    line-height: 3rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #343A40;
+}
+
+.fc-unthemed .fc-today {
+    background-color: #f5f5f5;
+}
+
+.full-width .dataTables_wrapper {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.hover-u:hover {
+    text-decoration: underline !important;
+}
+
+.hr-xs {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.i-hidden {
+    display: none;
+}
+
+.label-eq-st {
+    min-width: 68px;
+}
+
+label.error {
+    color: #FF4961;
+    margin-bottom: 0;
+}
+
+label.v-mid {
+    padding-top: 7px;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0 !important;
+}
+
+.margin-bottom-05 {
+    margin-bottom: 5px !important;
+}
+
+.margin-bottom-1 {
+    margin-bottom: 10px !important;
+}
+
+.margin-bottom-2 {
+    margin-bottom: 20px !important;
+}
+
+.margin-bottom-3 {
+    margin-bottom: 30px !important;
+}
+
+.margin-left-05 {
+    margin-left: 10px !important;
+}
+
+.margin-left-1 {
+    margin-left: 10px !important;
+}
+
+.margin-left-2 {
+    margin-left: 20px !important;
+}
+
+.margin-right-05 {
+    margin-right: 5px !important;
+}
+
+.margin-right-07 {
+    margin-right: 7px !important;
+}
+
+.margin-right-1 {
+    margin-right: 10px !important;
+}
+
+.margin-top-2r {
+    margin-top: -20px !important;
+}
+
+.margin-top-1 {
+    margin-top: 10px !important;
+}
+
+.margin-top-2 {
+    margin-top: 20px !important;
+}
+
+.margin-top-25 {
+    margin-top: 25px !important;
+}
+
+.margin-top-32 {
+    margin-top: 32px !important;
+}
+
+.margin-top-33 {
+    margin-top: 33px !important;
+}
+
+.padding-top-0 {
+    padding-top: 0 !important;
+}
+
+.padding-top-05 {
+    padding-top: 5px !important;
+}
+
+.padding-bottom-0 {
+    padding-bottom: 0 !important;
+}
+
+.padding-right-1 {
+    padding-right: 10px !important;
+}
+
+.padding-left-1 {
+    padding-left: 10px !important;
+}
+
+.p-clock {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 22px;
+    font-size: 13px;
+}
+
+.p1 {
+    margin-bottom: 3px;
+    font-size: 13px;
+}
+
+form.search-section {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.select2-results__options {
+    font-size: 14px !important;
+}
+
+    .select2-results__options li {
+        padding: 0px 0px 0px 14px;
+    }
+
+.select2-selection {
+    height: 38px !important;
+}
+
+.select2-selection__rendered {
+    line-height: 37px !important;
+    padding-left: 14px !important;
+    color: #555 !important;
+}
+
+.select2-selection--single {
+    border-color: #ccc !important;
+}
+
+.select2-selection__arrow {
+    height: 37px !important;
+}
+
+.swal2-modal .swal2-cancel {
+    background-color: #bbb !important;
+}
+
+.table th, .table td {
+    padding: 0.4rem;
+}
+
+.table {
+    width: 100% !important;
+}
+
+.table-custom .h-1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.table-custom .h-2 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.table-custom2 {
+    font-size: 14px;
+}
+
+.table-custom3 {
+    font-size: 14px;
+}
+
+.table-custom2 td {
+    border: 0;
+    padding: 0;
+}
+
+.table-customAU {
+    width: 100% !important;
+    height: 20px;
+    font-size: small;
+    margin: 0 0 0 0;
+    border: 1px solid #ddd;
+    
+}
+
+
+
+.text-wrap {
+    white-space: nowrap;
+}
+
+.width-90 {
+    width: 90px;
+}

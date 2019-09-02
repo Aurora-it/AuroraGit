@@ -1,0 +1,165 @@
+﻿
+<style>
+
+    footer {
+        background-color: black;
+        color: snow;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURORA-StockPredict</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Jobs Management. AURORA Co., Ltd.">
+    @*<meta name="keywords" content="qfac, pdm, pd, pm">*@
+    <meta name="author" content="AUTORA">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/app-assets/img/ico/apple-icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/app-assets/img/ico/apple-icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/app-assets/img/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/app-assets/img/ico/apple-icon-152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/app-assets/img/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="~/app-assets/img/ico/favicon-32.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/fonts/feather/style.min.css">
+    @*<link rel="stylesheet" type="text/css" href="~/app-assets/fonts/simple-line-icons/style.css">*@
+    <link rel="stylesheet" type="text/css" href="~/app-assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/pickadate/pickadate.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/aurora.css" />
+
+</head>
+<body>
+
+
+
+        <div class="navbar navbar-inverse  bg-dark navbar-fixed-top navbar-expand-sm">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <a href="@Url.Action("Index", "Home")" class="logo-text float-left"><img src="~/app-assets/img/logo.png" alt="AURORA Logo" />  </a>
+                </div>
+
+
+                <div class="navbar-collapse collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Create", "CreateStatistic")"><i class="icon-home"></i>&nbsp;<span class="menu-title">Create-Statistic</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("About", "Home")"><i class="icon-calendar"></i>&nbsp;<span class="menu-title">Dev-Management</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Contact", "Home")"><i class="icon-user"></i>&nbsp;<span class="menu-title">User-Confirm</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("About", "Home")"><i class="icon-user-following"></i>&nbsp;<span class="menu-title">User-Accept</span></a>
+                        </li>
+                    </ul>
+
+
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a><i class="fa fa-user-secret"></i><span class="i-text-username hidden-xs"></span> &nbsp;<label id="lbUser">Admin</label></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language"></i> <span class="caret"></span></a>
+                            <ul class="dropdown-menu" id="ddlMenuSystem">
+                                <li><a href="#" onclick="setLng('th')">Thai</a></li>
+                                <li><a href="#" onclick="setLng('en')">English</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Action("Logout", "Account")"><i class="icon-logout" text-red" style="margin-right:6px;"></i></a></li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    <br />
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer>
+        <p class="clearfix text-muted px-2" style="text-align:center;"><span>Copyright  &copy; @DateTime.Now.Year AURORA, All rights reserved. </span></p>
+    </footer>
+
+
+
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!-- BEGIN VENDOR JS-->
+    <script src="~/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+    <script src="~/app-assets/vendors/js/core/popper.min.js"></script>
+    <script src="~/app-assets/vendors/js/core/bootstrap.min.js"></script>
+    <script src="~/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/app-assets/vendors/js/prism.min.js"></script>
+    <script src="~/app-assets/vendors/js/jquery.matchHeight-min.js"></script>
+    <script src="~/app-assets/vendors/js/screenfull.min.js"></script>
+    <script src="~/app-assets/vendors/js/pace/pace.min.js"></script>
+    <!-- END VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/app-assets/vendors/js/datatable/datatables.min.js"></script>
+    <script src="~/app-assets/vendors/js/fullcalendar.min.js"></script>
+    <script src="~/app-assets/vendors/js/jquery-ui.min.js"></script>
+    <script src="~/app-assets/vendors/js/sweetalert2.min.js"></script>
+    <script src="~/app-assets/vendors/js/pickadate/picker.js"></script>
+    <script src="~/app-assets/vendors/js/pickadate/picker.date.js"></script>
+    <script src="~/app-assets/vendors/js/pickadate/picker.time.js"></script>
+    <script src="~/app-assets/vendors/js/pickadate/legacy.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN CONVEX JS-->
+    <script src="~/app-assets/js/app-sidebar.js"></script>
+    <script src="~/app-assets/js/notification-sidebar.js"></script>
+    <!-- END CONVEX JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <!-- END PAGE LEVEL JS-->
+    <script src="~/Scripts/numeral.min.js"></script>
+    <script src="~/Scripts/select2.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/fn.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+
+</html>
+
+
+<script>
+</script>
